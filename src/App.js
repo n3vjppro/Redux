@@ -81,6 +81,13 @@ import Main from './components/Main'
                 memorized:false, 
                 isShow:false}].concat(state.arrWords)
         };
+        case 'TOGGLE_SHOW':
+        return{...state,
+            arrWords: state.arrWords.map(e=>{
+                if(e.id !== action.id ) return e;
+                return {...e, isShow: !e.isShow}
+            })
+        }
         default :break;
         
 }
