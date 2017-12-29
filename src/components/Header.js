@@ -5,14 +5,21 @@ import {
 import {connect} from 'react-redux';
 
  class Header extends Component {
+    
+//      ButtonAdd() { 
+//          this.props.dispatch({type: 'TOGGLE_IS_ADDING'});
+//          return this.props.myIsAdding?'-':'+'
+//  }
     render() {
+   
+        
         return (
             <View style={styles.header}>
             <Text></Text>
             <Text>My Words</Text>
             
             <TouchableOpacity onPress={()=>this.props.dispatch({type: 'TOGGLE_IS_ADDING'})}>
-                <Text>+ </Text>
+                <Text>{this.props.myIsAdding?'-':'+'} </Text>
             </TouchableOpacity>
         </View>
         );
@@ -29,4 +36,11 @@ const styles = StyleSheet.create({
 
 );
 
-export default connect()(Header)
+function mapStatetoProps(state) {
+    return {
+        
+        myIsAdding: state.isAdding,
+    }
+}
+
+export default connect(mapStatetoProps)(Header)

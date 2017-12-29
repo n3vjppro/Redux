@@ -24,6 +24,7 @@ class Word extends Component {
         const textDecorationLine = memorized ? 'line-through' :'none';
         const memorizedButtonText = memorized ?'forget':'memorized';
         const meaning = isShow?vn: '---';
+        const buttonShow = isShow? 'UnShow':'Show';
         return (
 
             <View style={styles.container}>
@@ -36,7 +37,7 @@ class Word extends Component {
                     </TouchableOpacity>
 
                     <TouchableOpacity style={styles.button} onPress={this.toggleShowWord}>
-                        <Text style={{ color: 'silver'}}>Show</Text>
+                        <Text style={{ color: 'silver'}}>{buttonShow}</Text>
                     </TouchableOpacity>
                     
                 </View>
