@@ -3,6 +3,7 @@ import {
     Text, Touchable, FlatList, StyleSheet, View, TouchableOpacity,
 } from 'react-native'; 
 import {connect} from 'react-redux';
+import {toggleIsAdding} from '../redux/actionCreators'
 
  class Header extends Component {
     
@@ -18,7 +19,7 @@ import {connect} from 'react-redux';
             <Text></Text>
             <Text>My Words</Text>
             
-            <TouchableOpacity onPress={()=>this.props.dispatch({type: 'TOGGLE_IS_ADDING'})}>
+            <TouchableOpacity onPress={()=>this.props.toggleIsAdding()}>
                 <Text>{this.props.myIsAdding?'-':'+'} </Text>
             </TouchableOpacity>
         </View>
@@ -43,4 +44,4 @@ function mapStatetoProps(state) {
     }
 }
 
-export default connect(mapStatetoProps)(Header)
+export default connect(mapStatetoProps,{toggleIsAdding})(Header)
