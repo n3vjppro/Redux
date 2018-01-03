@@ -3,24 +3,25 @@ import {
     Text, Touchable, FlatList, StyleSheet, View, TouchableOpacity, Button,
 } from 'react-native';
 import { connect } from 'react-redux';
+import{toogleMemorized, toggleShow } from '../redux/actionCreators';
 
 class Word extends Component {
 
-    memorizedWord=()=>{
-        this.props.dispatch({
-            type:'TOGGLE_MEMORIZED',
-            id: this.props.myWord.id
-        });
-    }
+    // memorizedWord=()=>{
+    //     this.props.dispatch({
+    //         type:'TOGGLE_MEMORIZED',
+    //         id: this.props.myWord.id
+    //     });
+    // }
 
-    toggleShowWord=()=>{
-        this.props.dispatch({
-            type:'TOGGLE_SHOW',
-            id: this.props.myWord.id
-        });
-    }
+    // toggleShowWord=()=>{
+    //     this.props.dispatch({
+    //         type:'TOGGLE_SHOW',
+    //         id: this.props.myWord.id
+    //     });
+    // }
     render() {
-        const { en, vn,memorized, isShow } = this.props.myWord;
+        const { en, vn,memorized, isShow, id } = this.props.myWord;
         const textDecorationLine = memorized ? 'line-through' :'none';
         const memorizedButtonText = memorized ?'forget':'memorized';
         const meaning = isShow?vn: '---';
@@ -32,11 +33,11 @@ class Word extends Component {
                 <Text>{meaning}</Text>
                 <View style={styles.controller}> 
 
-                    <TouchableOpacity style={styles.button} onPress={this.memorizedWord}>
+                    <TouchableOpacity style={styles.button} onPress={()=>this.props.toogleMemorized(id)}>
                         <Text style={{ color: 'silver'}}>{memorizedButtonText}</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.button} onPress={this.toggleShowWord}>
+                    <TouchableOpacity style={styles.button} onPress={()=>this.props.toggleShow(id)}>
                         <Text style={{ color: 'silver'}}>{buttonShow}</Text>
                     </TouchableOpacity>
                     
@@ -66,4 +67,4 @@ const styles = StyleSheet.create({
         marginTop: 4, borderRadius:5,
     }
 });
-export default connect()(Word);
+export default connect(null, {toogleMemorized, toggleShow})(Word);
